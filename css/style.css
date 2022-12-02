@@ -11,6 +11,9 @@ body {
     display:flex;
     justify-content:center;
 }
+.dealer{
+    margin: 30px 0 0 0;
+}
 
 .card {
     border-radius:15px;
@@ -61,4 +64,39 @@ body {
     background-position: -20px -20px;
     background-repeat: no-repeat;
     background-color: green;
+}
+
+.newDeal{
+    margin: 30px auto;
+    text-align: center;
+}
+
+.buttons{
+    margin: 30px auto;
+    height:100px;
+    width: 400px;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:    "one two three four";
+
+}
+
+.hit{
+    grid-area: one
+}
+.stay{
+    grid-area: two
+}
+.double{
+    grid-area: three
+}
+.split{
+    grid-area: four
+}
+
+.action{
+    margin: 0 auto;
+    height: 40px;
+    width: 74px;
 }
