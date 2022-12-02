@@ -1,0 +1,49 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+body {
+    margin:0;
+}
+
+.cardslot{
+    background-color:rgb(251, 251, 237);
+    border-radius:30px;
+    height:300px;
+    width: 200px;
+    border: 1px solid black;
+}
+
+.card {
+    position:relative;
+    height:100%;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:7rem;
+}
+
+.card::before, .card::after {
+    position:absolute;
+    content:attr(data-value);
+    font-size: 2rem;
+    font-family: 'Roboto Mono', monospace;
+}
+.card::before{
+    top: 0.5rem;
+    left: 0.5rem;
+}
+
+.card::after{
+    bottom: 0.5rem;
+    right: 0.5rem;
+    transform: rotate(180deg)
+}
+
+.black-card{
+    color:black;
+}
+.red-card{
+    color:red;
+}
