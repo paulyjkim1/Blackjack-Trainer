@@ -9,3 +9,24 @@ for(const suit of suits){
 }
 
 console.log(deck)
+
+//on new deal button, randomly change cards
+let newDeal = document.querySelector('.new')
+let dealerUp = document.getElementById('dealerUp')
+let playerUp1 = document.getElementById('playerUp1')
+let playerUp2 = document.getElementById('playerUp2')
+
+
+
+newDeal.addEventListener('click', () => {
+    let a = Math.floor(Math.random() * 53)
+    let b = Math.floor(Math.random() * 53)
+    let c = Math.floor(Math.random() * 53)
+
+    dealerUp.setAttribute('value', deck[a])
+    playerUp1.setAttribute('value', deck[b])
+    playerUp2.setAttribute('value', deck[c])
+    
+
+
+})

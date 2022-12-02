@@ -31,7 +31,7 @@ body {
 
 .card::before, .card::after {
     position:absolute;
-    content:attr(data-value);
+    content:attr(value);
     font-size: 2rem;
     font-family: 'Roboto Mono', monospace;
 }
@@ -69,6 +69,7 @@ body {
 .newDeal{
     margin: 30px auto;
     text-align: center;
+    
 }
 
 .buttons{
