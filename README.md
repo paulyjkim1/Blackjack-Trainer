@@ -43,4 +43,4 @@ JavaScript
 https://hackmd.io/@paulyjkim1/p1sources
 
 ## Link to Journal/Planning Document
-https://hackmd.io/@paulyjkim1/p1sources
+https://hackmd.io/@paulyjkim1/p1journal
