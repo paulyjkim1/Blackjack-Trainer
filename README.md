@@ -39,4 +39,8 @@ JavaScript
 2. Displaying correct image for each card value
 3. Tons of roadblocks that I don't even know of yet...
 
+## Research Sources
+https://hackmd.io/@paulyjkim1/p1sources
+
 ## Link to Journal/Planning Document
+https://hackmd.io/@paulyjkim1/p1sources
