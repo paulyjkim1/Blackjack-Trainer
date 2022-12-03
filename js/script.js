@@ -12,15 +12,16 @@ console.log(deck)
 
 //on new deal button, randomly change cards
 let newDeal = document.querySelector('.new')
-let dealerUp = document.getElementById('dealerUp')
-let playerUp1 = document.getElementById('playerUp1')
-let playerUp2 = document.getElementById('playerUp2')
+let dealerUp = document.querySelector('#dealerUp')
+let playerUp1 = document.querySelector('#playerUp1')
+let playerUp2 = document.querySelector('#playerUp2')
 
 for(i=0; i < deck.length; i++){
     console.log((deck[i].split('').length)-1)
     console.log(deck[i])
 }
 
+console.log(dealerUp.className)
 
 newDeal.addEventListener('click', () => {
     let a = Math.floor(Math.random() * 52)
@@ -31,6 +32,18 @@ newDeal.addEventListener('click', () => {
     let aSplit= deck[a].split('')
     let ai= ((deck[a].split('').length)-1)
     dealerUp.innerText = aSplit[ai]
+    
+    if (aSplit[ai] === "♠" || aSplit[ai]=== "♣"){
+        if(dealerUp.className ==="card red-card"){
+            dealerUp.className = "card black-card"
+        }
+    } else if(aSplit[ai] === "♥" || aSplit[ai]=== "♦"){
+        if(dealerUp.className ==="card black-card"){
+            dealerUp.className = "card red-card"
+        }
+    }
+
+    
 
     console.log(aSplit)
     playerUp1.setAttribute('value', deck[b])
