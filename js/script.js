@@ -54,12 +54,8 @@ function randomDeal(cardspot, randomNum){
 }
 
 
-// need to get the value of the two player cards added together as well as the dealer's
-//use ParseInt()
 
-
-// gets value of dealer card (k q j = 10 and A = 1)
-
+// gets value of card (k q j = 10 and A = 1)
 //coud do just a getValue function and the player value is just equal to the two player cardspot values
 function getValue(cardspot){
     let val= 0
@@ -68,7 +64,7 @@ function getValue(cardspot){
         val = 10
     }else if(cardVal.split('')[0] === "A"){
         val = 1
-
+        
     }else {
         val = parseInt(cardVal)
     }
@@ -76,5 +72,7 @@ function getValue(cardspot){
 }
 
 
+//how do we store soft hands (A X) and pairs
+//aces can be their own thing maybe, dont set value to it or set a huge value to it. conditional "if value is greater than x then follow soft hand rules?"
 
 
