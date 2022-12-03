@@ -18,19 +18,19 @@ JavaScript
 
 
 ## MVP
-1. Add ruleset
-2. Randomly generate hand on deal button click
-3. Cards images represent their correct value
-4. Buttons to simulate player action
-5. Correctly analyze hand and provide decision feedback
+1. Create table environment
+2. Add ruleset
+3. Randomly generate hand on deal button click
+4. Cards images represent their correct value
+5. Buttons to simulate player action
+6. Correctly analyze hand and provide decision feedback
 
 
 ## Stretch Goals
-1. Create table environment
-2. Drop downs for rules and cheatsheet
-3. Statistics tracker with a reset button
-4. Audio when cards dealt
-5. Super stretch: make another gamemode (actual blackjack)
+1. Drop downs for rules and cheatsheet
+2. Statistics tracker with a reset button
+3. Audio when cards dealt
+4. Super stretch: make another gamemode (actual blackjack)
 
 
 
