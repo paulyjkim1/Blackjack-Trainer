@@ -27,28 +27,24 @@ newDeal.addEventListener('click', () => {
     let a = Math.floor(Math.random() * 52)
     let b = Math.floor(Math.random() * 52)
     let c = Math.floor(Math.random() * 52)
-
-    dealerUp.setAttribute('value', deck[a])
-    let aSplit= deck[a].split('')
-    let ai= ((deck[a].split('').length)-1)
-    dealerUp.innerText = aSplit[ai]
-    
-    if (aSplit[ai] === "♠" || aSplit[ai]=== "♣"){
-        if(dealerUp.className ==="card red-card"){
-            dealerUp.className = "card black-card"
-        }
-    } else if(aSplit[ai] === "♥" || aSplit[ai]=== "♦"){
-        if(dealerUp.className ==="card black-card"){
-            dealerUp.className = "card red-card"
-        }
-    }
-
-    
-
-    console.log(aSplit)
-    playerUp1.setAttribute('value', deck[b])
-    playerUp2.setAttribute('value', deck[c])
-    
-
-
+    randomDeal(dealerUp, a)
+    randomDeal(playerUp1, b)
+    randomDeal(playerUp2, c)
 })
+
+function randomDeal(cardspot, randomNum){
+    cardspot.setAttribute('value', deck[randomNum])
+        let aSplit= deck[randomNum].split('')
+        let x= ((deck[randomNum].split('').length)-1)
+        cardspot.innerText = aSplit[x]
+        
+        if (aSplit[x] === "♠" || aSplit[x]=== "♣"){
+            if(cardspot.className ==="card red-card"){
+                cardspot.className = "card black-card"
+            }
+        } else if(aSplit[x] === "♥" || aSplit[x]=== "♦"){
+            if(cardspot.className ==="card black-card"){
+                cardspot.className = "card red-card"
+            }
+        }
+}
