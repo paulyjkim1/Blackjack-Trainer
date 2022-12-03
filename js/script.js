@@ -27,8 +27,10 @@ newDeal.addEventListener('click', () => {
     randomDeal(playerUp1, b)
     randomDeal(playerUp2, c)
 
-    let dealerValue= getDealerValue(dealerUp)
+    let dealerValue= getValue(dealerUp)
+    let playerValue= getValue(playerUp1) + getValue(playerUp2)
     console.log(dealerValue)
+    console.log(playerValue)
 
 
 })
@@ -56,18 +58,21 @@ function randomDeal(cardspot, randomNum){
 //use ParseInt()
 
 
-function getDealerValue(cardspot){
-    let dealerVal= 0
+// gets value of dealer card (k q j = 10 and A = 1)
+
+//coud do just a getValue function and the player value is just equal to the two player cardspot values
+function getValue(cardspot){
+    let val= 0
     let cardVal= cardspot.getAttribute("value")
     if (cardVal.split('')[0] === "K" || cardVal.split('')[0] === "Q" || cardVal.split('')[0] === "J"){
-        dealerVal = 10
+        val = 10
     }else if(cardVal.split('')[0] === "A"){
-        dealerVal = 1
+        val = 1
 
     }else {
-        dealerVal = parseInt(cardVal)
+        val = parseInt(cardVal)
     }
-    return dealerVal
+    return val
 }
 
 
