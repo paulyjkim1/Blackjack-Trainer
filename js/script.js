@@ -29,7 +29,7 @@ newDeal.addEventListener('click', () => {
     totalCount++
     console.log(totalCount)
     //initialize analysis to empty
-    analysis.innerText = '';
+    analysis.innerText = ''
     //getting three random numbers to feed into randomDeal
     let a = Math.floor(Math.random() * 52)
     let b = Math.floor(Math.random() * 52)
@@ -67,22 +67,21 @@ newDeal.addEventListener('click', () => {
         showAnalysis(stand)
         showAnalysis(double)
         showAnalysis(split)
+    
     }
+
 
     //add an event listener to action buttons and compare user action with the correct move
     function showAnalysis(action){
         action.addEventListener('click', () => {
             let playerAction = action.innerText
-            if(playerAction === correct && analysis.innerText === ''){
+            if(playerAction === correct){
                 analysis.innerText = `Correct! Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${correct} `
-                correctCount++
-            } else if(playerAction != correct && analysis.innerText === ''){
+            
+            } else if(playerAction != correct){
                 analysis.innerText = `Incorrect. Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${correct}`
                 
-                correctCount--
-                
             }
-            console.log(correctCount)
         })
     }
 
