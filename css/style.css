@@ -66,15 +66,20 @@ body {
     background-color: green;
 }
 
+.resources {
+    margin: 10px auto;
+    text-align: center;
+}
+
 .newDeal{
-    margin: 30px auto;
+    margin: 10px auto;
     text-align: center;
     
 }
 
 .buttons{
-    margin: 30px auto;
-    height:100px;
+    margin: 10px auto;
+    height:40px;
     width: 400px;
     display:grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -100,4 +105,15 @@ body {
     margin: 0 auto;
     height: 40px;
     width: 74px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.analysis{
+    margin: 0px auto;
+    text-align: center;
+    border: 1px solid black;
+    height: 100px;
+    width:500px;
+    background-color: antiquewhite;
 }

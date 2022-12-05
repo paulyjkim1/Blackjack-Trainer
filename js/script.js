@@ -13,6 +13,11 @@ let newDeal = document.querySelector('.new')
 let dealerUp = document.querySelector('#dealerUp')
 let playerUp1 = document.querySelector('#playerUp1')
 let playerUp2 = document.querySelector('#playerUp2')
+let analysis = document.querySelector('.analysis')
+let hit = document.querySelector('.hit')
+let stay = document.querySelector('.stay')
+let double = document.querySelector('.double')
+let spit = document.querySelector('.split')
 
 
 //on click new deal button, randomly change cards
@@ -31,6 +36,7 @@ newDeal.addEventListener('click', () => {
     let playerValue= 0;
     let p1val = getValue(playerUp1)
     let p2val = getValue(playerUp2)
+    let correct;
     //if statement here changes values for pairs
     if(p1val === p2val){
         playerValue = parseInt('' + p1val + p2val)
@@ -39,9 +45,12 @@ newDeal.addEventListener('click', () => {
     }
 
     if(playerValue === 1121){
-        console.log('blackjack')
+        correct = 'blackjack'
+        analysis.innerText = correct
+        
     } else {
-        console.log(basicStrategy[playerValue][dealerValue])
+        correct = basicStrategy[playerValue][dealerValue]
+        
     }
 
 })
@@ -95,50 +104,6 @@ function getValue(cardspot){
 // else if (value is < 1121) {player has soft hand, compare with soft hand rules}
 // else {player has pocket aces (value of 11111111) compare with pair rules}
 
-
-
-const hardHands = {
-    20: {2:"s", 3:"s", 4:"s", 5:"s", 6:"s", 7:"s", 8:"s", 9:"s", 10:"s", 1111:"s"},
-    19: {2:"s", 3:"s", 4:"s", 5:"s", 6:"s", 7:"s", 8:"s", 9:"s", 10:"s", 1111:"s"},
-    18: {2:"s", 3:"s", 4:"s", 5:"s", 6:"s", 7:"s", 8:"s", 9:"s", 10:"s", 1111:"s"},
-    17: {2:"s", 3:"s", 4:"s", 5:"s", 6:"s", 7:"s", 8:"s", 9:"s", 10:"s", 1111:"s"},
-    16: {2:"s", 3:"s", 4:"s", 5:"s", 6:"s", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    15: {2:"s", 3:"s", 4:"s", 5:"s", 6:"s", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    14: {2:"s", 3:"s", 4:"s", 5:"s", 6:"s", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    13: {2:"s", 3:"s", 4:"s", 5:"s", 6:"s", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    12: {2:"h", 3:"h", 4:"s", 5:"s", 6:"s", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    11: {2:"d", 3:"d", 4:"d", 5:"d", 6:"d", 7:"d", 8:"d", 9:"d", 10:"d", 1111:"d"},
-    10: {2:"d", 3:"d", 4:"d", 5:"d", 6:"d", 7:"d", 8:"d", 9:"d", 10:"h", 1111:"h"},
-    9: {2:"h", 3:"d", 4:"d", 5:"d", 6:"d", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    8: {2:"h", 3:"h", 4:"h", 5:"h", 6:"h", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    7: {2:"h", 3:"h", 4:"h", 5:"h", 6:"h", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    6: {2:"h", 3:"h", 4:"h", 5:"h", 6:"h", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    5: {2:"h", 3:"h", 4:"h", 5:"h", 6:"h", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-}
-
-const pairs= {
-    11111111: {2:"sp", 3:"sp", 4:"sp", 5:"sp", 6:"sp", 7:"sp", 8:"sp", 9:"sp", 10:"sp", 1111:"sp"},
-    1010: {2:"s", 3:"s", 4:"s", 5:"s", 6:"s", 7:"s", 8:"s", 9:"s", 10:"s", 1111:"s"},
-    99: {2:"sp", 3:"sp", 4:"sp", 5:"sp", 6:"sp", 7:"s", 8:"sp", 9:"sp", 10:"s", 1111:"s"},
-    88: {2:"sp", 3:"sp", 4:"sp", 5:"sp", 6:"sp", 7:"sp", 8:"sp", 9:"sp", 10:"sp", 1111:"sp"},
-    77: {2:"sp", 3:"sp", 4:"sp", 5:"sp", 6:"sp", 7:"sp", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    66: {2:"sp", 3:"sp", 4:"sp", 5:"sp", 6:"sp", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    55: {2:"d", 3:"d", 4:"d", 5:"d", 6:"d", 7:"d", 8:"d", 9:"d", 10:"h", 1111:"h"},
-    44: {2:"h", 3:"h", 4:"h", 5:"sp", 6:"sp", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    33: {2:"sp", 3:"sp", 4:"sp", 5:"sp", 6:"sp", 7:"sp", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    22: {2:"sp", 3:"sp", 4:"sp", 5:"sp", 6:"sp", 7:"sp", 8:"h", 9:"h", 10:"h", 1111:"h"},
-}
-
-const softHands= {
-    1120: {2:"s", 3:"s", 4:"s", 5:"s", 6:"s", 7:"s", 8:"s", 9:"s", 10:"s", 1111:"s"},
-    1119: {2:"s", 3:"s", 4:"s", 5:"s", 6:"d", 7:"s", 8:"s", 9:"s", 10:"s", 1111:"s"},
-    1118: {2:"d", 3:"d", 4:"d", 5:"d", 6:"d", 7:"s", 8:"s", 9:"h", 10:"h", 1111:"h"},
-    1117: {2:"h", 3:"d", 4:"d", 5:"d", 6:"d", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    1116: {2:"h", 3:"h", 4:"d", 5:"d", 6:"d", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    1115: {2:"h", 3:"h", 4:"d", 5:"d", 6:"d", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    1114: {2:"h", 3:"h", 4:"h", 5:"d", 6:"d", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    1113: {2:"h", 3:"h", 4:"h", 5:"d", 6:"d", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-}
 
 const basicStrategy= {
     1120: {2:"s", 3:"s", 4:"s", 5:"s", 6:"s", 7:"s", 8:"s", 9:"s", 10:"s", 1111:"s"},
