@@ -28,7 +28,16 @@ newDeal.addEventListener('click', () => {
     randomDeal(playerUp2, c)
 
     let dealerValue= getValue(dealerUp)
-    let playerValue= getValue(playerUp1) + getValue(playerUp2)
+    let playerValue= 0;
+    let p1val = getValue(playerUp1)
+    let p2val = getValue(playerUp2)
+    //if statement here changes values for pairs
+    if(p1val === p2val){
+        playerValue = parseInt('' + p1val + p2val)
+    } else {
+        playerValue = getValue(playerUp1) + getValue(playerUp2)
+    }
+
     console.log(dealerValue)
     console.log(playerValue)
 
@@ -63,7 +72,7 @@ function getValue(cardspot){
     if (cardVal.split('')[0] === "K" || cardVal.split('')[0] === "Q" || cardVal.split('')[0] === "J"){
         val = 10
     }else if(cardVal.split('')[0] === "A"){
-        val = 1
+        val = 1111
         
     }else {
         val = parseInt(cardVal)
@@ -71,8 +80,16 @@ function getValue(cardspot){
     return val
 }
 
+//function that takes in the playervalue as parameter and identifies if its a hard hand, soft hand, or pair
 
-//how do we store soft hands (A X) and pairs
-//aces can be their own thing maybe, dont set value to it or set a huge value to it. conditional "if value is greater than x then follow soft hand rules?"
 
+// Aces can be their own thing, set it to a huge value (1111)
+// Pairs: check if two player cards are the same, if they are, set value to the two numbers concatenated, not added. For ex. if player has two 9s value would be 99 instead of 18.
+// Done by parseInt('' + getValue(playerUpcard1) + getValue(playerUpcard2))
+//  Main conditional:
+// if (value === 1121) {player has a blackjack} 
+// else if (value is less than 22 (22 being pocket 2s)) {player value = two card values added together (ex. KQ = 20)- compare with hard hand rules}
+// else if (value is < 1010) {player has pair, compare with pair rules}
+// else if (value is < 1121) {player has soft hand, compare with soft hand rules}
+// else {player has pocket aces (value of 11111111) compare with pair rules}
 
