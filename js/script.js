@@ -1,14 +1,3 @@
-//create a deck of cards from A hearts to K clubs and store in array
-const suits = ["♥", "♦", "♠", "♣"] 
-const numbers = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-const deck= []
-
-for(const suit of suits){
-    for(const number of numbers){
-        deck.push(number + suit)
-    }
-}
-
 let newDeal = document.querySelector('.new')
 let dealerUp = document.querySelector('#dealerUp')
 let playerUp1 = document.querySelector('#playerUp1')
@@ -20,11 +9,27 @@ let double = document.querySelector('.double')
 let split = document.querySelector('.split')
 
 
+//create a deck of cards from A hearts to K clubs and store in array
+const suits = ["♥", "♦", "♠", "♣"] 
+const numbers = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+const deck= []
+
+for(const suit of suits){
+    for(const number of numbers){
+        deck.push(number + suit)
+    }
+}
+
+let correctCount = 0;
+let totalCount = 0;
+
 //on click new deal button, randomly change cards
 newDeal.addEventListener('click', () => {
-
+    //add one to total count every new deal
+    totalCount++
+    console.log(totalCount)
+    //initialize analysis to empty
     analysis.innerText = '';
-    
     //getting three random numbers to feed into randomDeal
     let a = Math.floor(Math.random() * 52)
     let b = Math.floor(Math.random() * 52)
@@ -34,6 +39,7 @@ newDeal.addEventListener('click', () => {
     randomDeal(playerUp1, b)
     randomDeal(playerUp2, c)
 
+    // define variables
     let dealerValue= getValue(dealerUp)
     let playerValue= 0;
     let p1val = getValue(playerUp1)
@@ -43,14 +49,15 @@ newDeal.addEventListener('click', () => {
     let dcardNumber= dealerUp.getAttribute('value').slice(0,-1)
     let correct;
     let playerAction;
-    //if statement here changes values for pairs
+
+    //if statement changes value to concatenated number if player hand is a pair
     if(p1val === p2val){
         playerValue = parseInt('' + p1val + p2val)
     } else {
         playerValue = getValue(playerUp1) + getValue(playerUp2)
     }
 
-
+    //if statement checks for blackjack
     if(playerValue === 1121){
         correct = 'blackjack'
         analysis.innerText = correct    
@@ -62,17 +69,26 @@ newDeal.addEventListener('click', () => {
         showAnalysis(split)
     }
 
+    //add an event listener to action buttons and compare user action with the correct move
     function showAnalysis(action){
-        let playerAction = action.innerText
-        action.addEventListener('click', () =>{
-            if(playerAction === correct){
+        action.addEventListener('click', () => {
+            let playerAction = action.innerText
+            if(playerAction === correct && analysis.innerText === ''){
                 analysis.innerText = `Correct! Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${correct} `
-            } else {
+                correctCount++
+            } else if(playerAction != correct && analysis.innerText === ''){
                 analysis.innerText = `Incorrect. Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${correct}`
+                
+                correctCount--
+                
             }
+            console.log(correctCount)
         })
     }
+
 })
+
+
 
 //function takes in a number and cart spot and generates the card at deck[number]
 function randomDeal(cardspot, randomNum){
@@ -94,8 +110,7 @@ function randomDeal(cardspot, randomNum){
 
 
 
-// gets value of card (k q j = 10 and A = 1)
-//coud do just a getValue function and the player value is just equal to the two player cardspot values
+// gets value of card (k q j = 10 and A = 1111)
 function getValue(cardspot){
     let val= 0
     let cardVal= cardspot.getAttribute("value")
@@ -111,7 +126,7 @@ function getValue(cardspot){
 }
 
 
-
+//object inside object to store basic strategy rules
 const basicStrategy= {
     1120: {2:"Stand", 3:"Stand", 4:"Stand", 5:"Stand", 6:"Stand", 7:"Stand", 8:"Stand", 9:"Stand", 10:"Stand", 1111:"Stand"},
     1119: {2:"Stand", 3:"Stand", 4:"Stand", 5:"Stand", 6:"Double", 7:"Stand", 8:"Stand", 9:"Stand", 10:"Stand", 1111:"Stand"},
