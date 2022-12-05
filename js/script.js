@@ -17,11 +17,13 @@ let analysis = document.querySelector('.analysis')
 let hit = document.querySelector('.hit')
 let stay = document.querySelector('.stay')
 let double = document.querySelector('.double')
-let spit = document.querySelector('.split')
+let split = document.querySelector('.split')
 
 
 //on click new deal button, randomly change cards
 newDeal.addEventListener('click', () => {
+
+    analysis.innerText = '';
     
     //getting three random numbers to feed into randomDeal
     let a = Math.floor(Math.random() * 52)
@@ -36,7 +38,11 @@ newDeal.addEventListener('click', () => {
     let playerValue= 0;
     let p1val = getValue(playerUp1)
     let p2val = getValue(playerUp2)
+    let p1cardNumber= playerUp1.getAttribute('value').slice(0,-1)
+    let p2cardNumber= playerUp2.getAttribute('value').slice(0,-1)
+    let dcardNumber= dealerUp.getAttribute('value').slice(0,-1)
     let correct;
+    let playerAction;
     //if statement here changes values for pairs
     if(p1val === p2val){
         playerValue = parseInt('' + p1val + p2val)
@@ -44,13 +50,63 @@ newDeal.addEventListener('click', () => {
         playerValue = getValue(playerUp1) + getValue(playerUp2)
     }
 
+
     if(playerValue === 1121){
         correct = 'blackjack'
-        analysis.innerText = correct
-        
+        analysis.innerText = correct    
     } else {
         correct = basicStrategy[playerValue][dealerValue]
+        hit.addEventListener('click', () => {
+            playerAction = "h"
+            if(playerAction === correct){
+                correctAction()
+            } else {
+                wrongAction()
+            }
+        })
+        stay.addEventListener('click', () => {
+            playerAction = "s"
+            if(playerAction === correct){
+                correctAction()
+            } else {
+                wrongAction()
+            }
+        })
+        double.addEventListener('click', () => {
+            playerAction = "d"
+            if(playerAction === correct){
+                correctAction()
+            } else {
+                wrongAction()
+            }
+        })
+        split.addEventListener('click', () => {
+            playerAction = "sp"
+            if(playerAction === correct){
+                correctAction()
+            } else {
+                wrongAction()
+            }
+        })
         
+    }
+
+    // function showAnalysis(action){
+    //     let playerAction = action.innerText
+    //     console.log(playerAction)
+    //     if(playerAction === correct){
+    //         correctAction()
+    //     } else {
+    //         wrongAction()
+    //     }
+    // }
+
+    function correctAction(){
+        analysis.innerText = `Correct! Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${playerAction} `
+    }
+    
+    function wrongAction(){
+        analysis.innerText = `Incorrect. Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${correct}`
     }
 
 })
@@ -91,18 +147,6 @@ function getValue(cardspot){
     return val
 }
 
-//function that takes in the playervalue as parameter and identifies if its a hard hand, soft hand, or pair
-
-
-// Aces can be their own thing, set it to a huge value (1111)
-// Pairs: check if two player cards are the same, if they are, set value to the two numbers concatenated, not added. For ex. if player has two 9s value would be 99 instead of 18.
-// Done by parseInt('' + getValue(playerUpcard1) + getValue(playerUpcard2))
-//  Main conditional:
-// if (value === 1121) {player has a blackjack} 
-// else if (value is less than 22 (22 being pocket 2s)) {player value = two card values added together (ex. KQ = 20)- compare with hard hand rules}
-// else if (value is < 1010) {player has pair, compare with pair rules}
-// else if (value is < 1121) {player has soft hand, compare with soft hand rules}
-// else {player has pocket aces (value of 11111111) compare with pair rules}
 
 
 const basicStrategy= {
