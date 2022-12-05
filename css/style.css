@@ -91,7 +91,7 @@ body {
 .hit{
     grid-area: one
 }
-.stay{
+.stand{
     grid-area: two
 }
 .double{

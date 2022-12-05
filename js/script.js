@@ -15,7 +15,7 @@ let playerUp1 = document.querySelector('#playerUp1')
 let playerUp2 = document.querySelector('#playerUp2')
 let analysis = document.querySelector('.analysis')
 let hit = document.querySelector('.hit')
-let stay = document.querySelector('.stay')
+let stand = document.querySelector('.stand')
 let double = document.querySelector('.double')
 let split = document.querySelector('.split')
 
@@ -56,59 +56,22 @@ newDeal.addEventListener('click', () => {
         analysis.innerText = correct    
     } else {
         correct = basicStrategy[playerValue][dealerValue]
-        hit.addEventListener('click', () => {
-            playerAction = "h"
-            if(playerAction === correct){
-                correctAction()
-            } else {
-                wrongAction()
-            }
-        })
-        stay.addEventListener('click', () => {
-            playerAction = "s"
-            if(playerAction === correct){
-                correctAction()
-            } else {
-                wrongAction()
-            }
-        })
-        double.addEventListener('click', () => {
-            playerAction = "d"
-            if(playerAction === correct){
-                correctAction()
-            } else {
-                wrongAction()
-            }
-        })
-        split.addEventListener('click', () => {
-            playerAction = "sp"
-            if(playerAction === correct){
-                correctAction()
-            } else {
-                wrongAction()
-            }
-        })
-        
+        showAnalysis(hit)
+        showAnalysis(stand)
+        showAnalysis(double)
+        showAnalysis(split)
     }
 
-    // function showAnalysis(action){
-    //     let playerAction = action.innerText
-    //     console.log(playerAction)
-    //     if(playerAction === correct){
-    //         correctAction()
-    //     } else {
-    //         wrongAction()
-    //     }
-    // }
-
-    function correctAction(){
-        analysis.innerText = `Correct! Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${playerAction} `
+    function showAnalysis(action){
+        let playerAction = action.innerText
+        action.addEventListener('click', () =>{
+            if(playerAction === correct){
+                analysis.innerText = `Correct! Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${correct} `
+            } else {
+                analysis.innerText = `Incorrect. Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${correct}`
+            }
+        })
     }
-    
-    function wrongAction(){
-        analysis.innerText = `Incorrect. Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${correct}`
-    }
-
 })
 
 //function takes in a number and cart spot and generates the card at deck[number]
@@ -150,38 +113,38 @@ function getValue(cardspot){
 
 
 const basicStrategy= {
-    1120: {2:"s", 3:"s", 4:"s", 5:"s", 6:"s", 7:"s", 8:"s", 9:"s", 10:"s", 1111:"s"},
-    1119: {2:"s", 3:"s", 4:"s", 5:"s", 6:"d", 7:"s", 8:"s", 9:"s", 10:"s", 1111:"s"},
-    1118: {2:"d", 3:"d", 4:"d", 5:"d", 6:"d", 7:"s", 8:"s", 9:"h", 10:"h", 1111:"h"},
-    1117: {2:"h", 3:"d", 4:"d", 5:"d", 6:"d", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    1116: {2:"h", 3:"h", 4:"d", 5:"d", 6:"d", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    1115: {2:"h", 3:"h", 4:"d", 5:"d", 6:"d", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    1114: {2:"h", 3:"h", 4:"h", 5:"d", 6:"d", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    1113: {2:"h", 3:"h", 4:"h", 5:"d", 6:"d", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    11111111: {2:"sp", 3:"sp", 4:"sp", 5:"sp", 6:"sp", 7:"sp", 8:"sp", 9:"sp", 10:"sp", 1111:"sp"},
-    1010: {2:"s", 3:"s", 4:"s", 5:"s", 6:"s", 7:"s", 8:"s", 9:"s", 10:"s", 1111:"s"},
-    99: {2:"sp", 3:"sp", 4:"sp", 5:"sp", 6:"sp", 7:"s", 8:"sp", 9:"sp", 10:"s", 1111:"s"},
-    88: {2:"sp", 3:"sp", 4:"sp", 5:"sp", 6:"sp", 7:"sp", 8:"sp", 9:"sp", 10:"sp", 1111:"sp"},
-    77: {2:"sp", 3:"sp", 4:"sp", 5:"sp", 6:"sp", 7:"sp", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    66: {2:"sp", 3:"sp", 4:"sp", 5:"sp", 6:"sp", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    55: {2:"d", 3:"d", 4:"d", 5:"d", 6:"d", 7:"d", 8:"d", 9:"d", 10:"h", 1111:"h"},
-    44: {2:"h", 3:"h", 4:"h", 5:"sp", 6:"sp", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    33: {2:"sp", 3:"sp", 4:"sp", 5:"sp", 6:"sp", 7:"sp", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    22: {2:"sp", 3:"sp", 4:"sp", 5:"sp", 6:"sp", 7:"sp", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    20: {2:"s", 3:"s", 4:"s", 5:"s", 6:"s", 7:"s", 8:"s", 9:"s", 10:"s", 1111:"s"},
-    19: {2:"s", 3:"s", 4:"s", 5:"s", 6:"s", 7:"s", 8:"s", 9:"s", 10:"s", 1111:"s"},
-    18: {2:"s", 3:"s", 4:"s", 5:"s", 6:"s", 7:"s", 8:"s", 9:"s", 10:"s", 1111:"s"},
-    17: {2:"s", 3:"s", 4:"s", 5:"s", 6:"s", 7:"s", 8:"s", 9:"s", 10:"s", 1111:"s"},
-    16: {2:"s", 3:"s", 4:"s", 5:"s", 6:"s", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    15: {2:"s", 3:"s", 4:"s", 5:"s", 6:"s", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    14: {2:"s", 3:"s", 4:"s", 5:"s", 6:"s", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    13: {2:"s", 3:"s", 4:"s", 5:"s", 6:"s", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    12: {2:"h", 3:"h", 4:"s", 5:"s", 6:"s", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    11: {2:"d", 3:"d", 4:"d", 5:"d", 6:"d", 7:"d", 8:"d", 9:"d", 10:"d", 1111:"d"},
-    10: {2:"d", 3:"d", 4:"d", 5:"d", 6:"d", 7:"d", 8:"d", 9:"d", 10:"h", 1111:"h"},
-    9: {2:"h", 3:"d", 4:"d", 5:"d", 6:"d", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    8: {2:"h", 3:"h", 4:"h", 5:"h", 6:"h", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    7: {2:"h", 3:"h", 4:"h", 5:"h", 6:"h", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    6: {2:"h", 3:"h", 4:"h", 5:"h", 6:"h", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
-    5: {2:"h", 3:"h", 4:"h", 5:"h", 6:"h", 7:"h", 8:"h", 9:"h", 10:"h", 1111:"h"},
+    1120: {2:"Stand", 3:"Stand", 4:"Stand", 5:"Stand", 6:"Stand", 7:"Stand", 8:"Stand", 9:"Stand", 10:"Stand", 1111:"Stand"},
+    1119: {2:"Stand", 3:"Stand", 4:"Stand", 5:"Stand", 6:"Double", 7:"Stand", 8:"Stand", 9:"Stand", 10:"Stand", 1111:"Stand"},
+    1118: {2:"Double", 3:"Double", 4:"Double", 5:"Double", 6:"Double", 7:"Stand", 8:"Stand", 9:"Hit", 10:"Hit", 1111:"Hit"},
+    1117: {2:"Hit", 3:"Double", 4:"Double", 5:"Double", 6:"Double", 7:"Hit", 8:"Hit", 9:"Hit", 10:"Hit", 1111:"Hit"},
+    1116: {2:"Hit", 3:"Hit", 4:"Double", 5:"Double", 6:"Double", 7:"Hit", 8:"Hit", 9:"Hit", 10:"Hit", 1111:"Hit"},
+    1115: {2:"Hit", 3:"Hit", 4:"Hit", 5:"Double", 6:"Double", 7:"Hit", 8:"Hit", 9:"Hit", 10:"Hit", 1111:"Hit"},
+    1114: {2:"Hit", 3:"Hit", 4:"Hit", 5:"Double", 6:"Double", 7:"Hit", 8:"Hit", 9:"Hit", 10:"Hit", 1111:"Hit"},
+    1113: {2:"Hit", 3:"Hit", 4:"Hit", 5:"Double", 6:"Double", 7:"Hit", 8:"Hit", 9:"Hit", 10:"Hit", 1111:"Hit"},
+    11111111: {2:"Split", 3:"Split", 4:"Split", 5:"Split", 6:"Split", 7:"Split", 8:"Split", 9:"Split", 10:"Split", 1111:"Split"},
+    1010: {2:"Stand", 3:"Stand", 4:"Stand", 5:"Stand", 6:"Stand", 7:"Stand", 8:"Stand", 9:"Stand", 10:"Stand", 1111:"Stand"},
+    99: {2:"Split", 3:"Split", 4:"Split", 5:"Split", 6:"Split", 7:"Stand", 8:"Split", 9:"Split", 10:"Stand", 1111:"Stand"},
+    88: {2:"Split", 3:"Split", 4:"Split", 5:"Split", 6:"Split", 7:"Split", 8:"Split", 9:"Split", 10:"Split", 1111:"Split"},
+    77: {2:"Split", 3:"Split", 4:"Split", 5:"Split", 6:"Split", 7:"Split", 8:"Hit", 9:"Hit", 10:"Hit", 1111:"Hit"},
+    66: {2:"Split", 3:"Split", 4:"Split", 5:"Split", 6:"Split", 7:"Hit", 8:"Hit", 9:"Hit", 10:"Hit", 1111:"Hit"},
+    55: {2:"Double", 3:"Double", 4:"Double", 5:"Double", 6:"Double", 7:"Double", 8:"Double", 9:"Double", 10:"Hit", 1111:"Hit"},
+    44: {2:"Hit", 3:"Hit", 4:"Hit", 5:"Split", 6:"Split", 7:"Hit", 8:"Hit", 9:"Hit", 10:"Hit", 1111:"Hit"},
+    33: {2:"Split", 3:"Split", 4:"Split", 5:"Split", 6:"Split", 7:"Split", 8:"Hit", 9:"Hit", 10:"Hit", 1111:"Hit"},
+    22: {2:"Split", 3:"Split", 4:"Split", 5:"Split", 6:"Split", 7:"Split", 8:"Hit", 9:"Hit", 10:"Hit", 1111:"Hit"},
+    20: {2:"Stand", 3:"Stand", 4:"Stand", 5:"Stand", 6:"Stand", 7:"Stand", 8:"Stand", 9:"Stand", 10:"Stand", 1111:"Stand"},
+    19: {2:"Stand", 3:"Stand", 4:"Stand", 5:"Stand", 6:"Stand", 7:"Stand", 8:"Stand", 9:"Stand", 10:"Stand", 1111:"Stand"},
+    18: {2:"Stand", 3:"Stand", 4:"Stand", 5:"Stand", 6:"Stand", 7:"Stand", 8:"Stand", 9:"Stand", 10:"Stand", 1111:"Stand"},
+    17: {2:"Stand", 3:"Stand", 4:"Stand", 5:"Stand", 6:"Stand", 7:"Stand", 8:"Stand", 9:"Stand", 10:"Stand", 1111:"Stand"},
+    16: {2:"Stand", 3:"Stand", 4:"Stand", 5:"Stand", 6:"Stand", 7:"Hit", 8:"Hit", 9:"Hit", 10:"Hit", 1111:"Hit"},
+    15: {2:"Stand", 3:"Stand", 4:"Stand", 5:"Stand", 6:"Stand", 7:"Hit", 8:"Hit", 9:"Hit", 10:"Hit", 1111:"Hit"},
+    14: {2:"Stand", 3:"Stand", 4:"Stand", 5:"Stand", 6:"Stand", 7:"Hit", 8:"Hit", 9:"Hit", 10:"Hit", 1111:"Hit"},
+    13: {2:"Stand", 3:"Stand", 4:"Stand", 5:"Stand", 6:"Stand", 7:"Hit", 8:"Hit", 9:"Hit", 10:"Hit", 1111:"Hit"},
+    12: {2:"Hit", 3:"Hit", 4:"Stand", 5:"Stand", 6:"Stand", 7:"Hit", 8:"Hit", 9:"Hit", 10:"Hit", 1111:"Hit"},
+    11: {2:"Double", 3:"Double", 4:"Double", 5:"Double", 6:"Double", 7:"Double", 8:"Double", 9:"Double", 10:"Double", 1111:"Double"},
+    10: {2:"Double", 3:"Double", 4:"Double", 5:"Double", 6:"Double", 7:"Double", 8:"Double", 9:"Double", 10:"Hit", 1111:"Hit"},
+    9: {2:"Hit", 3:"Double", 4:"Double", 5:"Double", 6:"Double", 7:"Hit", 8:"Hit", 9:"Hit", 10:"Hit", 1111:"Hit"},
+    8: {2:"Hit", 3:"Hit", 4:"Hit", 5:"Hit", 6:"Hit", 7:"Hit", 8:"Hit", 9:"Hit", 10:"Hit", 1111:"Hit"},
+    7: {2:"Hit", 3:"Hit", 4:"Hit", 5:"Hit", 6:"Hit", 7:"Hit", 8:"Hit", 9:"Hit", 10:"Hit", 1111:"Hit"},
+    6: {2:"Hit", 3:"Hit", 4:"Hit", 5:"Hit", 6:"Hit", 7:"Hit", 8:"Hit", 9:"Hit", 10:"Hit", 1111:"Hit"},
+    5: {2:"Hit", 3:"Hit", 4:"Hit", 5:"Hit", 6:"Hit", 7:"Hit", 8:"Hit", 9:"Hit", 10:"Hit", 1111:"Hit"},
 }
