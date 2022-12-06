@@ -4,7 +4,7 @@
 
 body {
     margin:0;
-    background-color: green;
+    background-color: rgb(118, 173, 118);
 }
 
 .dealer, .player {
@@ -64,11 +64,40 @@ body {
     background-position: -20px -20px;
     background-repeat: no-repeat;
     background-color: green;
+    border: 1px solid black;
+    border-radius: 10px;
 }
 
 .resources {
-    margin: 10px auto;
+    padding: 0 px;
+    margin: 0 auto;
     text-align: center;
+    background-color: rgb(99, 143, 99);
+    display: grid;
+    grid-template-columns: 7fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "title rules book";
+}
+
+h1{
+    grid-area: title;
+    text-align: left;
+    margin: 10px 10px 10px 20px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.rulediv{
+    grid-area: rules;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bookdiv{
+    grid-area: book;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .newDeal{
