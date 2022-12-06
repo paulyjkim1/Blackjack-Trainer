@@ -48,7 +48,6 @@ newDeal.addEventListener('click', () => {
     let p2cardNumber= playerUp2.getAttribute('value').slice(0,-1)
     let dcardNumber= dealerUp.getAttribute('value').slice(0,-1)
     let correct;
-    let playerAction;
 
     //if statement changes value to concatenated number if player hand is a pair
     if(p1val === p2val){
@@ -63,28 +62,32 @@ newDeal.addEventListener('click', () => {
         analysis.innerText = correct    
     } else {
         correct = basicStrategy[playerValue][dealerValue]
+        console.log(p1cardNumber, p2cardNumber)
+        //my method of stopping buttons being pressed after first player action
+        let isRunning= true
+
         showAnalysis(hit)
         showAnalysis(stand)
         showAnalysis(double)
         showAnalysis(split)
-    
+        
+        //function compares player action with correct action and returns analysis
+        function showAnalysis(action){
+            action.addEventListener('click', () => {
+                let playerAction = action.innerText
+                console.log(playerAction, correct)
+                if(playerAction === correct && isRunning === true){
+                    analysis.innerText = `Correct! Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${correct} `
+                    console.log(p1cardNumber, p2cardNumber, correct)
+                    isRunning = false;
+                } else if(playerAction != correct && isRunning === true){
+                    analysis.innerText = `Incorrect. Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${correct}`
+                    console.log(p1cardNumber, p2cardNumber, correct)
+                    isRunning = false;
+                }
+            })
+        }
     }
-
-
-    //add an event listener to action buttons and compare user action with the correct move
-    function showAnalysis(action){
-        action.addEventListener('click', () => {
-            let playerAction = action.innerText
-            if(playerAction === correct){
-                analysis.innerText = `Correct! Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${correct} `
-            
-            } else if(playerAction != correct){
-                analysis.innerText = `Incorrect. Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${correct}`
-                
-            }
-        })
-    }
-
 })
 
 
