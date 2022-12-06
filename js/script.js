@@ -3,6 +3,7 @@ let dealerUp = document.querySelector('#dealerUp')
 let playerUp1 = document.querySelector('#playerUp1')
 let playerUp2 = document.querySelector('#playerUp2')
 let analysis = document.querySelector('.analysis')
+let statistics = document.querySelector('.statistics')
 let hit = document.querySelector('.hit')
 let stand = document.querySelector('.stand')
 let double = document.querySelector('.double')
@@ -65,7 +66,6 @@ newDeal.addEventListener('click', () => {
         analysis.innerText = correct    
     } else {
         correct = basicStrategy[playerValue][dealerValue]
-        console.log(p1cardNumber, p2cardNumber)
         //my method of stopping buttons being pressed after first player action
         let isRunning= true
 
@@ -78,16 +78,17 @@ newDeal.addEventListener('click', () => {
         function showAnalysis(action){
             action.addEventListener('click', () => {
                 let playerAction = action.innerText
-                console.log(playerAction, correct)
                 if(playerAction === correct && isRunning === true){
                     analysis.innerText = `Correct! Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${correct} `
-                    console.log(p1cardNumber, p2cardNumber, correct)
                     isRunning = false;
+                    correctCount++
+                    
+                    console.log(correctCount)
                 } else if(playerAction != correct && isRunning === true){
                     analysis.innerText = `Incorrect. Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${correct}`
-                    console.log(p1cardNumber, p2cardNumber, correct)
                     isRunning = false;
                 }
+                statistics.innerText = `Statistics: ${correctCount} correct decisions out of ${totalCount} total hands. ${Math.round((correctCount/totalCount)*100)}% correct`
             })
         }
     }
