@@ -4,6 +4,7 @@ let playerUp1 = document.querySelector('#playerUp1')
 let playerUp2 = document.querySelector('#playerUp2')
 let analysis = document.querySelector('.analysis')
 let statistics = document.querySelector('.statistics')
+let resetStat = document.querySelector('.resetStat')
 let hit = document.querySelector('.hit')
 let stand = document.querySelector('.stand')
 let double = document.querySelector('.double')
@@ -27,10 +28,15 @@ for(const suit of suits){
 let correctCount = 0;
 let totalCount = 0;
 
+resetStat.addEventListener('click', () => {
+    correctCount = 0;
+    totalCount = 0;
+    statistics.innerText = `Statistics: ${correctCount} correct decisions out of ${totalCount} total hands.`  
+})
+
 //on click new deal button, randomly change cards
 newDeal.addEventListener('click', () => {
     //add one to total count every new deal
-    totalCount++
     console.log(totalCount)
     //initialize analysis to empty
     analysis.innerText = ''
@@ -62,10 +68,11 @@ newDeal.addEventListener('click', () => {
 
     //if statement checks for blackjack
     if(playerValue === 1121){
+        totalCount++
         correctCount++ 
         correct = 'blackjack'
         analysis.innerText = correct 
-        statistics.innerText = `Statistics: ${correctCount} correct decisions out of ${totalCount} total hands. ${Math.round((correctCount/totalCount)*100)}% correct`  
+        statistics.innerText = `Statistics: ${correctCount} correct decisions out of ${totalCount} total hands.`  
     } else {
         correct = basicStrategy[playerValue][dealerValue]
         //my method of stopping buttons being pressed after first player action
@@ -84,13 +91,15 @@ newDeal.addEventListener('click', () => {
                     analysis.innerText = `Correct! Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${correct} `
                     isRunning = false;
                     correctCount++
+                    totalCount++
                     
                     console.log(correctCount)
                 } else if(playerAction != correct && isRunning === true){
                     analysis.innerText = `Incorrect. Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${correct}`
                     isRunning = false;
+                    totalCount++
                 }
-                statistics.innerText = `Statistics: ${correctCount} correct decisions out of ${totalCount} total hands. ${Math.round((correctCount/totalCount)*100)}% correct`
+                statistics.innerText = `Statistics: ${correctCount} correct decisions out of ${totalCount} total hands.`
             })
         }
     }
