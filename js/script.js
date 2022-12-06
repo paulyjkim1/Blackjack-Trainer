@@ -62,8 +62,10 @@ newDeal.addEventListener('click', () => {
 
     //if statement checks for blackjack
     if(playerValue === 1121){
+        correctCount++ 
         correct = 'blackjack'
-        analysis.innerText = correct    
+        analysis.innerText = correct 
+        statistics.innerText = `Statistics: ${correctCount} correct decisions out of ${totalCount} total hands. ${Math.round((correctCount/totalCount)*100)}% correct`  
     } else {
         correct = basicStrategy[playerValue][dealerValue]
         //my method of stopping buttons being pressed after first player action

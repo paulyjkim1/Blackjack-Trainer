@@ -136,18 +136,43 @@ h1{
     margin: 0 auto;
     height: 40px;
     width: 74px;
-    border: 2px solid black;
-    border-radius: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 
-.analysis{
-    margin: 0px auto;
+.results-container{
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:    "an"
+                            "st"
+                            "bu";
     text-align: center;
+    margin:0 auto;
     border: 1px solid black;
-    height: 100px;
+    height: 150px;
     width:500px;
     background-color: antiquewhite;
 }
+.analysis{
+    margin:20px auto 0px auto;
+    grid-area: an;
+}
+
+.statistics {
+    grid-area: st;
+}
+.resetStat{
+    grid-area: bu;
+    margin: 0 auto;
+    height: 40px;
+    width: 74px;
+    border: 1px solid black;
+    border-radius: 5px;
+    
+}
+
+
 
 .modal-container {
     background-color:rgba(0,0,0.0.3);
