@@ -7,6 +7,9 @@ let hit = document.querySelector('.hit')
 let stand = document.querySelector('.stand')
 let double = document.querySelector('.double')
 let split = document.querySelector('.split')
+let rules = document.querySelector('.rules')
+let modal_container = document.getElementById('modal-container')
+let closerules = document.getElementById('closerules')
 
 
 //create a deck of cards from A hearts to K clubs and store in array
@@ -89,6 +92,14 @@ newDeal.addEventListener('click', () => {
         }
     }
 })
+
+rules.addEventListener('click', () => {
+    modal_container.classList.add('show')
+})
+closerules.addEventListener('click', () => {
+    modal_container.classList.remove('show')
+})
+
 
 
 
