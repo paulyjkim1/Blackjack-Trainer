@@ -4,7 +4,7 @@
 
 body {
     margin:0 auto;
-    background-image: url('https://img.freepik.com/premium-photo/abstract-background-green-felt-casino-table_266732-23795.jpg?w=2000');
+    background-image: url(../img/background.jpg);
     background-repeat: repeat;
     background-size: cover;
 }
