@@ -175,9 +175,10 @@ h1{
     grid-area: bu;
     margin: 0 auto;
     height: 35px;
-    width: 74px;
+    width: 115px;
     border: 1px solid black;
     border-radius: 5px;
+    font-family: 'Roboto Mono', monospace;
     
 }
 
@@ -282,9 +283,15 @@ h1{
     text-align: left;
 }
 
+.new{
+    height: 38px;
+    width: 115px;
+}
+
 button:hover{
     background-color: rgb(196, 193, 193);
 }
+
 
 .new:hover{
     background-color: rgb(122, 223, 128);

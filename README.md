@@ -40,7 +40,8 @@ JavaScript
 3. Tons of roadblocks that I don't even know of yet...
 
 ## Research Sources
-https://hackmd.io/@paulyjkim1/p1sources
+CSS styling to make a card appear on screen: https://www.youtube.com/watch?v=NxRwIZWjLtE
+Modals: https://www.youtube.com/watch?v=XH5OW46yO8I
 
 ## Link to Journal/Planning Document
 https://hackmd.io/@paulyjkim1/p1journal
