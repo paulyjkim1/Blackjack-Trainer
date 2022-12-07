@@ -21,16 +21,17 @@ let closerules = document.getElementById('closerules')
 const suits = ["♥", "♦", "♠", "♣"] 
 const numbers = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 const deck= []
-
 for(const suit of suits){
     for(const number of numbers){
         deck.push(number + suit)
     }
 }
 
+
 let correctCount = 0;
 let totalCount = 0;
 
+//reset button for stats
 resetStat.addEventListener('click', () => {
     correctCount = 0;
     totalCount = 0;
@@ -108,6 +109,7 @@ newDeal.addEventListener('click', () => {
     }
 })
 
+//modal buttons
 rules.addEventListener('click', () => {
     modal_container.classList.add('show')
 })
