@@ -20,14 +20,15 @@
             <button class="action book">The Book</button>
         </div>
     </div>
+
     <div class="modal-container" id="modal-container">
         <dialog open class="modal">
             <h1>Rules</h1>
             <p>
                 Welcome to Blackjack Trainer! <br>
                 This trainer will simulate blackjack hands every time you press New Deal.
-                The player can then pick an action based on the cards dealt (hit, stand, double, split).
-                The player's decision will be compared to the "statistically correct decision" based on basic strategy.
+                The player can then pick an action based on their cards and the dealer's face up card (hit, stand, double, split).
+                The player's action will be compared to the "statistically correct decision" based on basic strategy.
                 Go ahead and click "The Book" button if you need help remembering!<br>
                 <br>
                 Assume multiple deck blackjack, no insurance or even money options, surrendering is not allowed, and doubling after split is allowed.
@@ -37,6 +38,20 @@
             </button>
         </dialog>
     </div>
+
+    <div class="book-modal-container" id="book-modal-container">
+        <dialog open class="book-modal">
+            <h1>Basic Strategy</h1>
+            <div class="stratcontainer">
+                <div class="basicStrategy" ></div>
+                <div class="key"></div>
+            </div>
+            <button id="closebook">
+                Close
+            </button>
+        </dialog>
+    </div>
+
     <div class="card-slots">
         <div class="dealer">
             <div class="card red-card" id= "dealerUp" value=""></div>
@@ -49,7 +64,6 @@
         
     </div>
 
-    
     <div class="buttons">
         <button class="action hit">Hit</button>
         <button class="action stand">Stand</button>
@@ -62,17 +76,9 @@
     </div>
     
     <div class="results-container">
-        <div class="analysis">
-
-        </div>
-
-        <div class="statistics">
-
-        </div>
-
+        <div class="analysis"></div>
+        <div class="statistics"></div>
         <button class="resetStat">Reset Stats</button>
-
-
     </div>
     
 </body>

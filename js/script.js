@@ -10,7 +10,10 @@ let stand = document.querySelector('.stand')
 let double = document.querySelector('.double')
 let split = document.querySelector('.split')
 let rules = document.querySelector('.rules')
+let book = document.querySelector('.book')
+let book_modal_container = document.getElementById('book-modal-container')
 let modal_container = document.getElementById('modal-container')
+let closebook = document.getElementById('closebook')
 let closerules = document.getElementById('closerules')
 
 
@@ -111,7 +114,12 @@ rules.addEventListener('click', () => {
 closerules.addEventListener('click', () => {
     modal_container.classList.remove('show')
 })
-
+book.addEventListener('click', () => {
+    book_modal_container.classList.add('show')
+})
+closebook.addEventListener('click', () => {
+    book_modal_container.classList.remove('show')
+})
 
 
 

@@ -150,9 +150,12 @@ h1{
     text-align: center;
     margin:0 auto;
     border: 1px solid black;
+    border-radius: 5px;
     height: 150px;
     width:500px;
     background-color: antiquewhite;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
 }
 .analysis{
     margin:20px auto 0px auto;
@@ -173,6 +176,63 @@ h1{
 }
 
 
+.book-modal-container {
+    background-color:rgba(0,0,0.0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    opacity:0;
+    pointer-events: none;
+    top:0;
+    left:0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1000;
+}
+
+.book-modal-container.show {
+    pointer-events:auto;
+    opacity: 1;
+    background: rgba(162, 156, 156, .5);
+}
+.book-modal {
+    background-color: #fff;
+    padding: 30px 50px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    width: 660px;
+    max-width:100%;
+    opacity: 1;
+}
+.book-modal h1{
+    margin:0;
+}
+
+.stratcontainer{
+    display:flex;
+    align-items: center;
+}
+
+.basicStrategy {
+    height: 570px;
+    width: 330px;
+    background-image: url('../img/thebook.png');
+    background-size: 250px 550px;
+    background-repeat: no-repeat;
+
+}
+
+
+.key {
+    margin:0 0 0 -75px;
+    height:190px;
+    width:300px;
+    background-image: url('../img/key.png');
+    background-size: 300px 150px;
+    background-repeat: no-repeat;
+    object-fit: contain;
+}
 
 .modal-container {
     background-color:rgba(0,0,0.0.3);
