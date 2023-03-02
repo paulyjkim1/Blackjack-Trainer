@@ -9,7 +9,7 @@ This Blackjack trainer simulates blackjack hands and allows players to pick a pl
 
 
 ## Link to the site
-https://paulyjkim1.github.io/GA-Project-1/
+https://paulyjkim1.github.io/Blackjack-Trainer/
 
 
 ## Link to Planning Document/Approach Taken
