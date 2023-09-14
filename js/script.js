@@ -30,18 +30,32 @@ for(const suit of suits){
 
 let correctCount = 0;
 let totalCount = 0;
+let dealerValue;
+let playerValue;
+let p1val;
+let p2val;
+let p1cardNumber;
+let p2cardNumber;
+let dcardNumber;
+let correct;
+let isRunning;
 
 //reset button for stats
 resetStat.addEventListener('click', () => {
     correctCount = 0;
     totalCount = 0;
-    // statistics.innerText = `Statistics: ${correctCount} correct decisions out of ${totalCount} total hands.`  
+    statistics.innerText = `Statistics: ${correctCount} correct decisions out of ${totalCount} total hands.`  
 })
 
 
 //on click new deal button, randomly change cards
 newDeal.addEventListener('click', () => {
     totalCount ++
+    hit.removeEventListener('click', analyze)
+    stand.removeEventListener('click', analyze)
+    double.removeEventListener('click', analyze)
+    split.removeEventListener('click', analyze)
+    
     //add one to total count every new deal
     console.log(totalCount)
     //initialize analysis to empty
@@ -56,14 +70,14 @@ newDeal.addEventListener('click', () => {
     randomDeal(playerUp2, c)
 
     // define variables
-    let dealerValue= getValue(dealerUp)
-    let playerValue= 0;
-    let p1val = getValue(playerUp1)
-    let p2val = getValue(playerUp2)
-    let p1cardNumber= playerUp1.getAttribute('value').slice(0,-1)
-    let p2cardNumber= playerUp2.getAttribute('value').slice(0,-1)
-    let dcardNumber= dealerUp.getAttribute('value').slice(0,-1)
-    let correct;
+    dealerValue= getValue(dealerUp)
+    playerValue= 0;
+    p1val = getValue(playerUp1)
+    p2val = getValue(playerUp2)
+    p1cardNumber= playerUp1.getAttribute('value').slice(0,-1)
+    p2cardNumber= playerUp2.getAttribute('value').slice(0,-1)
+    dcardNumber= dealerUp.getAttribute('value').slice(0,-1)
+    correct;
 
     //if statement changes value to concatenated number if player hand is a pair
     if(p1val === p2val){
@@ -78,42 +92,47 @@ newDeal.addEventListener('click', () => {
         correctCount++ 
         correct = 'blackjack'
         analysis.innerText = correct 
-        // statistics.innerText = `Statistics: ${correctCount} correct decisions out of ${totalCount} total hands.`  
+        statistics.innerText = `Statistics: ${correctCount} correct decisions out of ${totalCount} total hands.`  
     } else {
         correct = basicStrategy[playerValue][dealerValue]
         //my method of stopping buttons being pressed after first player action
-        let isRunning= true
+        isRunning= true
 
         
-        showAnalysis(hit)
-        showAnalysis(stand)
-        showAnalysis(double)
-        showAnalysis(split)
+        hit.addEventListener('click', analyze)
+        stand.addEventListener('click', analyze)
+        double.addEventListener('click', analyze)
+        split.addEventListener('click', analyze)
+
+        
+    }
+    //function compares player action with correct action and returns analysis
+    
+})
+
+function showAnalysis(action){
+    action.addEventListener('click', analyze(action))
+}
+
+function analyze(action){
+    let playerAction = action.innerText
+    if(playerAction === correct && isRunning === true){
+        analysis.innerText = `Correct! Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${correct} `
+        isRunning = false;
+        correctCount++
+        statistics.innerText = `Statistics: ${correctCount} correct decisions out of ${totalCount} total hands.`
         
         
-        //function compares player action with correct action and returns analysis
-        function showAnalysis(action){
-            action.addEventListener('click', () => {
-                let playerAction = action.innerText
-                if(playerAction === correct && isRunning === true){
-                    analysis.innerText = `Correct! Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${correct} `
-                    isRunning = false;
-                    correctCount++
-                    // statistics.innerText = `Statistics: ${correctCount} correct decisions out of ${totalCount} total hands.`
-                    
-                    
-                    console.log(correctCount)
-                } else if(playerAction != correct && isRunning === true){
-                    analysis.innerText = `Incorrect. Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${correct}`
-                    isRunning = false;
-                    // statistics.innerText = `Statistics: ${correctCount} correct decisions out of ${totalCount} total hands.`
-                    
-                }
-            }, {once: true})
-        }
+        console.log("correct")
+    } else if(playerAction != correct && isRunning === true){
+        analysis.innerText = `Incorrect. Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${correct}`
+        isRunning = false;
+        statistics.innerText = `Statistics: ${correctCount} correct decisions out of ${totalCount} total hands.`
+        console.log("incorrect")
     }
 
-})
+    this.removeEventListener('click', analyze);
+}
 
 //modal buttons
 rules.addEventListener('click', () => {
@@ -165,6 +184,7 @@ function getValue(cardspot){
     }
     return val
 }
+
 
 
 //object inside object to store basic strategy rules
