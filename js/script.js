@@ -15,6 +15,17 @@ let book_modal_container = document.getElementById('book-modal-container')
 let modal_container = document.getElementById('modal-container')
 let closebook = document.getElementById('closebook')
 let closerules = document.getElementById('closerules')
+let correctCount = 0;
+let totalCount = 0;
+let dealerValue;
+let playerValue;
+let p1val;
+let p2val;
+let p1cardNumber;
+let p2cardNumber;
+let dcardNumber;
+let correct;
+let isRunning;
 
 
 //create a deck of cards from A hearts to K clubs and store in array
@@ -28,18 +39,6 @@ for(const suit of suits){
 }
 
 
-let correctCount = 0;
-let totalCount = 0;
-let dealerValue;
-let playerValue;
-let p1val;
-let p2val;
-let p1cardNumber;
-let p2cardNumber;
-let dcardNumber;
-let correct;
-let isRunning;
-
 //reset button for stats
 resetStat.addEventListener('click', () => {
     correctCount = 0;
@@ -50,7 +49,10 @@ resetStat.addEventListener('click', () => {
 
 //on click new deal button, randomly change cards
 newDeal.addEventListener('click', () => {
+    //increment total count by 1 every time new deal is pressed
     totalCount ++
+
+    //remove existing event listeners to avoid incorrect correctCount incrementing with multiple newDeal presses followed by action
     hit.removeEventListener('click', analyze)
     stand.removeEventListener('click', analyze)
     double.removeEventListener('click', analyze)
@@ -69,7 +71,7 @@ newDeal.addEventListener('click', () => {
     randomDeal(playerUp1, b)
     randomDeal(playerUp2, c)
 
-    // define variables
+    // give variables values
     dealerValue= getValue(dealerUp)
     playerValue= 0;
     p1val = getValue(playerUp1)
@@ -98,7 +100,7 @@ newDeal.addEventListener('click', () => {
         //my method of stopping buttons being pressed after first player action
         isRunning= true
 
-        
+        //add event listeners
         hit.addEventListener('click', analyze)
         stand.addEventListener('click', analyze)
         double.addEventListener('click', analyze)
@@ -106,16 +108,12 @@ newDeal.addEventListener('click', () => {
 
         
     }
-    //function compares player action with correct action and returns analysis
     
 })
 
-function showAnalysis(action){
-    action.addEventListener('click', analyze(action))
-}
-
-function analyze(action){
-    let playerAction = action.innerText
+//function compares player action with correct action and returns analysis
+function analyze(){
+    let playerAction = this.innerText
     if(playerAction === correct && isRunning === true){
         analysis.innerText = `Correct! Player ${p1cardNumber} and ${p2cardNumber} against dealer ${dcardNumber} is a ${correct} `
         isRunning = false;
