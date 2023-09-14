@@ -111,6 +111,38 @@ newDeal.addEventListener('click', () => {
     
 })
 
+
+//function takes in a number and cart spot and generates the card at deck[number]
+function randomDeal(cardspot, randomNum){
+    cardspot.setAttribute('value', deck[randomNum])
+    let aSplit= deck[randomNum].split('')
+    let x= ((deck[randomNum].split('').length)-1)
+    cardspot.innerText = aSplit[x]
+    
+    if (aSplit[x] === "♠" || aSplit[x]=== "♣"){
+        if(cardspot.className ==="card red-card"){
+            cardspot.className = "card black-card"
+        }} else if(aSplit[x] === "♥" || aSplit[x]=== "♦"){
+            if(cardspot.className ==="card black-card"){
+                cardspot.className = "card red-card"
+            }
+        }
+}
+
+// gets value of card (k q j = 10 and A = 1111)
+function getValue(cardspot){
+    let val= 0
+    let cardVal= cardspot.getAttribute("value")
+    if (cardVal.split('')[0] === "K" || cardVal.split('')[0] === "Q" || cardVal.split('')[0] === "J"){
+        val = 10
+    }else if(cardVal.split('')[0] === "A"){
+        val = 1111
+    }else {
+        val = parseInt(cardVal)
+    }
+    return val
+}
+
 //function compares player action with correct action and returns analysis
 function analyze(){
     let playerAction = this.innerText
@@ -148,40 +180,6 @@ closebook.addEventListener('click', () => {
 
 
 
-//function takes in a number and cart spot and generates the card at deck[number]
-function randomDeal(cardspot, randomNum){
-    cardspot.setAttribute('value', deck[randomNum])
-        let aSplit= deck[randomNum].split('')
-        let x= ((deck[randomNum].split('').length)-1)
-        cardspot.innerText = aSplit[x]
-        
-        if (aSplit[x] === "♠" || aSplit[x]=== "♣"){
-            if(cardspot.className ==="card red-card"){
-                cardspot.className = "card black-card"
-            }
-        } else if(aSplit[x] === "♥" || aSplit[x]=== "♦"){
-            if(cardspot.className ==="card black-card"){
-                cardspot.className = "card red-card"
-            }
-        }
-}
-
-
-
-// gets value of card (k q j = 10 and A = 1111)
-function getValue(cardspot){
-    let val= 0
-    let cardVal= cardspot.getAttribute("value")
-    if (cardVal.split('')[0] === "K" || cardVal.split('')[0] === "Q" || cardVal.split('')[0] === "J"){
-        val = 10
-    }else if(cardVal.split('')[0] === "A"){
-        val = 1111
-        
-    }else {
-        val = parseInt(cardVal)
-    }
-    return val
-}
 
 
 
